@@ -20,13 +20,13 @@
             </button>
 
             <div class="containerImg" @mouseover="stopSlider" @mouseout="startSlider">
-                <img :src="reRun(restart)" alt="city img" class="img-slider">
+                <img :src="images[currentIndex]" alt="city img" class="image-slider">
 
-                <div class="imgDot">
-                    <button class="dot"></button>
-                    <button class="dot"></button>
-                    <button class="dot"></button>
-                    <button class="dot"></button>
+                <div class="imgDots">                                 
+                                        <!-- ternario per cambiare la classe al dot in base all'indice (funziona solo con il setInterval - NO click) -->
+                    <button class="dot"  :class="(i == currentIndex ? 'currentDot': '') " 
+                            v-for="(image, i) in images" :key="i" @click="clickDots(i)">
+                    </button>
                 </div>
             </div>
 

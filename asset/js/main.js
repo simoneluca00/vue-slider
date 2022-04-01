@@ -18,9 +18,6 @@ var app = new Vue(
 
             // variabile da definire nella funzione reRun per far ciclare tutte le img in modo continuo
             restart: '',
-
-            // variabile in cui verranno salvati tutti gli elementi HTML con la classe "dot" (punti dello slider)
-            dots: '',
             
         },
 
@@ -50,31 +47,47 @@ var app = new Vue(
             // all'indice dell'immagine attuale viene sottratto 1 e si passa all'immagine precedente
             prev: function() {
                 this.currentIndex -= 1;
+
+                if (this.currentIndex < 0) {
+                    this.currentIndex = this.imagesCount() - 1;
+                }
+                /* 
+                */
             },
 
             // all'indice dell'immagine attuale viene aggiunto 1 e si passa all'immagine successiva
             next: function() {
                 this.currentIndex += 1;
+                if (this.currentIndex > this.imagesCount() - 1) {
+                    this.currentIndex = 0;
+                }
+
             },
 
-            // verificare se l'indice (valore assoluto) dell'immagine attuale è maggiore del numero 
-            // delle immagini (modulo) cosicché all'ultima con NEXT si riparte dalla prima 
-            // e alla prima con PREV si va all'ultima
+            clickDots: function(indexImage){
+                this.currentIndex = indexImage;
+            }
 
-            reRun: function() {
-                restart = this.images[Math.abs(this.currentIndex) % this.imagesCount()];
-                return restart
 
-                // poteva essere fatto anche con l'IF all'interno delle funzioni NEXT e PREV
-            },
+            /* 
+                verificare se l'indice (valore assoluto) dell'immagine attuale è maggiore del numero 
+                delle immagini (modulo) cosicché all'ultima con NEXT si riparte dalla prima 
+                e alla prima con PREV si va all'ultima
 
-            dotHighlight: function() {
-                dots = document.querySelectorAll('.dot');
-                return dots
-            },
+                reRun: function() {
+                    poteva essere fatto anche con l'IF all'interno delle funzioni NEXT e PREV
+                    ma non funzionava correlato al cambio classe dei dots
+                    
+                    restart = this.images[Math.abs(this.currentIndex) % this.imagesCount()];
+                    return restart
+                },
+            */
+
         },
         
-        // COMPUTED è simile a Methods ma più adatta per la composizione di nuovi dati provenienti 
-        // da fonti esistenti --> per ottenre valori dinamici sulla base di altre proprietà
+        /*
+            COMPUTED è simile a Methods ma più adatta per la composizione di nuovi dati provenienti 
+            da fonti esistenti --> per ottenre valori dinamici sulla base di altre proprietà
+        */
     }
     )

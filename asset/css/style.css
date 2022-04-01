@@ -17,7 +17,7 @@ body {
     align-items: center;
 }
 
-.img-slider {
+.image-slider {
     width: 1150px;
     height: 700px;
     display: block;
@@ -48,7 +48,7 @@ body {
     align-items: center;
 }
 
-.imgDot {
+.imgDots {
     background-color: rgba(0, 0, 0, 0.6);
     border-radius: 30px;
     padding: 20px 10px;
@@ -71,4 +71,8 @@ body {
 .dot:hover {
     cursor: pointer;
     opacity: 0.8;
+}
+
+.currentDot {
+    background-color: blue;
 }
